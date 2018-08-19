@@ -1,0 +1,18 @@
+{
+  "eslint.enable": true,
+  "files.exclude": {
+    "node_modules": true,
+    ".npm-offline-cache": true
+  },
+  "editor.formatOnSave": true,
+  "[javascript]": {
+    "editor.formatOnSave": true
+  },
+  "prettier.eslintIntegration": false,
+  "eslint.autoFixOnSave": true,
+  "search.exclude": {
+    "system/": true,
+    "!/system/**/*.ps*": true
+  },
+  "editor.fontSize": 12
+}
