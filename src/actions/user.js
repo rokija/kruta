@@ -1,12 +1,36 @@
 import axios from "axios";
 import sha256 from "sha256";
-import { API, LOGIN_SUCCESS, LOGIN_ERROR } from "../constants";
+import {
+  API,
+  LOGIN_SUCCESS,
+  LOGIN_ERROR,
+  REGISTER_SUCCESS,
+  REGISTER_ERROR
+} from "../constants";
 
 const loginSuccess = () => {
   return {
     type: LOGIN_SUCCESS,
     payload: {
       isLogged: true
+    }
+  };
+};
+
+const registerSuccess = () => {
+  return {
+    type: REGISTER_SUCCESS,
+    payload: {
+      isRegistered: true
+    }
+  };
+};
+
+const registerError = () => {
+  return {
+    type: REGISTER_ERROR,
+    payload: {
+      isRegistered: false
     }
   };
 };
@@ -34,6 +58,23 @@ export const login = (email, password) => {
       })
       .catch(err => {
         dispatch(loginError());
+      });
+  };
+};
+
+export const register = (email, username, password) => {
+  return dispatch => {
+    return axios
+      .post(`${API.BASE}${API.REGISTER}`, {
+        email,
+        username,
+        hashedPassword: sha256(password)
+      })
+      .then(() => {
+        dispatch(registerSuccess());
+      })
+      .catch(() => {
+        dispatch(registerError());
       });
   };
 };

@@ -1,9 +1,12 @@
 import React, { Component } from "react";
+import LightBox from "./LightBox";
 import "./index.css";
 
 export default class PostModal extends Component {
   state = {
-    imageUrl: null
+    imageUrl: null,
+    formData: null,
+    caption: ""
   };
 
   handleAddImage = event => {
@@ -20,11 +23,15 @@ export default class PostModal extends Component {
     reader.readAsDataURL(file);
   };
 
+  handleAddCaption = event => {
+    this.setState({ caption: event.target.value });
+  };
+
   render() {
     const { imageUrl } = this.state;
 
     return (
-      <div className="modal show" role="dialog">
+      <LightBox onClickOutside={this.props.onClickOutside}>
         <div className="modal-dialog" role="document">
           <div className="modal-content">
             <div className="modal-header">
@@ -42,7 +49,7 @@ export default class PostModal extends Component {
               <form className="modalForm">
                 <div className="modalFormItem">
                   <label>Caption</label>
-                  <input type="text" />
+                  <input type="text" onChange={this.handleAddCaption} />
                 </div>
                 <div className="modalFormItem">
                   <input type="file" onChange={this.handleAddImage} />
@@ -65,7 +72,7 @@ export default class PostModal extends Component {
             </div>
           </div>
         </div>
-      </div>
+      </LightBox>
     );
   }
 }

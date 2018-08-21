@@ -1,6 +1,24 @@
 import React, { Component } from "react";
 
 class Register extends Component {
+  state = {
+    email: "",
+    username: "",
+    password: ""
+  };
+
+  onChange = e => this.setState({ [e.target.name]: e.target.value });
+
+  handleRegister = e => {
+    const { email, password, username } = this.state;
+    e.preventDefault();
+    this.props.register(email, username, password).then(() => {
+      if (this.props.registerReducer.isRegistered) {
+        this.props.history.push("/login");
+      }
+    });
+  };
+
   render() {
     return (
       <div className="container">
@@ -8,53 +26,48 @@ class Register extends Component {
           <h2 className="text-center">Register for Instagram app</h2>
           <form>
             <div className="form-group row">
-              <label
-                for="registerUserNameInput"
-                className="col-12 col-form-label"
-              >
-                UserName
-              </label>
+              <label className="col-12 col-form-label">UserName</label>
               <div className="col-12">
                 <input
                   type="username"
+                  name="username"
                   className="form-control"
                   placeholder="Username"
-                  id="registerUserNameInput"
+                  onChange={this.onChange}
                 />
               </div>
             </div>
             <div className="form-group row">
-              <label for="registerEmailInput" className="col-12 col-form-label">
-                Email
-              </label>
+              <label className="col-12 col-form-label">Email</label>
               <div className="col-12">
                 <input
                   type="email"
+                  name="email"
                   className="form-control"
                   placeholder="email"
-                  id="registerEmailInput"
+                  onChange={this.onChange}
                 />
               </div>
             </div>
             <div className="form-group row">
-              <label
-                for="registerPasswordInput"
-                className="col-12 col-form-label"
-              >
-                Password
-              </label>
+              <label className="col-12 col-form-label">Password</label>
               <div className="col-12">
                 <input
                   type="password"
+                  name="password"
                   className="form-control"
                   placeholder="password"
-                  id="registerPasswordInput"
+                  onChange={this.onChange}
                 />
               </div>
             </div>
             <div className="form-group row">
               <div className="col-12">
-                <button type="submit" className="btn btn-primary">
+                <button
+                  type="submit"
+                  className="btn btn-primary"
+                  onClick={this.handleRegister}
+                >
                   Register
                 </button>
               </div>

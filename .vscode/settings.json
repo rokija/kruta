@@ -14,5 +14,5 @@
     "system/": true,
     "!/system/**/*.ps*": true
   },
-  "editor.fontSize": 12
+  "editor.fontSize": 16
 }

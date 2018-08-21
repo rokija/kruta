@@ -19,6 +19,12 @@ class Home extends Component {
 
   onModalClose = () => this.setState({ isModalOpen: false });
 
+  onClickOutside = e => {
+    if (e.target.id === "light-box") {
+      this.setState({ isModalOpen: false });
+    }
+  };
+
   // componentWillMount() {
   //   this.props.validateToken();
   // }
@@ -31,11 +37,11 @@ class Home extends Component {
   //   this.props.history.push("/login");
   // }
 
-  static getDerivedStateFromProps(props) {
-    const { loginReducer } = props;
+  componentDidUpdate() {
+    const { loginReducer } = this.props;
 
     if (Object.keys(loginReducer).length && !loginReducer.isLogged) {
-      props.history.push("/login");
+      this.props.history.push("/login");
     }
     return null;
   }
@@ -56,7 +62,12 @@ class Home extends Component {
             <UserList />
           </div>
         </div>
-        {isModalOpen && <PostModal onModalClose={this.onModalClose} />}
+        {isModalOpen && (
+          <PostModal
+            onClickOutside={this.onClickOutside}
+            onModalClose={this.onModalClose}
+          />
+        )}
       </div>
     );
   }

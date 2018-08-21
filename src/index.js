@@ -7,7 +7,7 @@ import reduxThunk from "redux-thunk";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Home from "./containers/Home";
 import Login from "./containers/Login";
-import Register from "./components/Register";
+import Register from "./containers/Register";
 import registerServiceWorker from "./registerServiceWorker";
 import rootReducer from "./reducers";
 import "./index.css";
