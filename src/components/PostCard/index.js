@@ -1,11 +1,11 @@
 import React from "react";
 import logo from "../../media/image-placeholder.svg";
 
-const PostCard = ({ headline, description }) => (
+const PostCard = ({ title, createdAt, media }) => (
   <div>
-    <img src={logo} style={{ width: "100%" }} />
-    <h1>{headline}</h1>
-    <span>{description}</span>
+    <img src={media.path} style={{ width: "100%" }} />
+    <h1>{title}</h1>
+    <span>{createdAt}</span>
   </div>
 );
 

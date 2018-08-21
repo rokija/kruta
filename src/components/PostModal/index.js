@@ -27,6 +27,18 @@ export default class PostModal extends Component {
     this.setState({ caption: event.target.value });
   };
 
+  handleSubmit = () => {
+    const { caption, formData } = this.state;
+    const { posts, onModalClose, submitPost } = this.props;
+
+    // issue here with not rerendering
+    submitPost({ caption, formData }).then(() => {
+      if (posts.isSubmitted) {
+        onModalClose();
+      }
+    });
+  };
+
   render() {
     const { imageUrl } = this.state;
 
@@ -66,7 +78,11 @@ export default class PostModal extends Component {
               >
                 Close
               </button>
-              <button type="button" className="btn btn-primary">
+              <button
+                type="button"
+                className="btn btn-primary"
+                onClick={this.handleSubmit}
+              >
                 Save changes
               </button>
             </div>

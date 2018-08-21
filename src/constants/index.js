@@ -1,5 +1,5 @@
 export const API = {
-  BASE: "https://acn-bootcamp.herokuapp.com/api/v1/",
+  BASE: "api/v1/",
   LOGIN: "auth/session",
   REGISTER: "auth/users",
   USER_INFO: "users/self",
@@ -12,3 +12,7 @@ export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_ERROR = "LOGIN_ERROR";
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 export const REGISTER_ERROR = "REGISTER_ERROR";
+
+export const SET_POSTS = "SET_POSTS";
+export const POST_SUCCESS = "POST_SUCCESS";
+export const POST_ERROR = "POST_ERROR";

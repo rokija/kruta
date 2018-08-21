@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Posts from "../Posts";
 import UserList from "../UserList";
 import Header from "../Header";
-import PostModal from "../PostModal";
+import PostModal from "../../containers/PostModal";
 import "./index.css";
 
 class Home extends Component {
@@ -37,12 +37,18 @@ class Home extends Component {
   //   this.props.history.push("/login");
   // }
 
+  componentDidMount() {
+    this.props.getPosts();
+  }
+
   componentDidUpdate() {
     const { loginReducer } = this.props;
+    console.log(this.props);
 
     if (Object.keys(loginReducer).length && !loginReducer.isLogged) {
       this.props.history.push("/login");
     }
+
     return null;
   }
 
@@ -56,7 +62,7 @@ class Home extends Component {
             <Header onModalOpen={this.onModalOpen} />
           </div>
           <div className="col-md-8">
-            <Posts />
+            <Posts posts={this.props.posts} />
           </div>
           <div className="col-md-4">
             <UserList />
