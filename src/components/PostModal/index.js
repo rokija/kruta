@@ -29,12 +29,13 @@ export default class PostModal extends Component {
 
   handleSubmit = () => {
     const { caption, formData } = this.state;
-    const { posts, onModalClose, submitPost } = this.props;
+    const { posts, onModalClose, submitPost, getPosts } = this.props;
 
     // issue here with not rerendering
     submitPost({ caption, formData }).then(() => {
       if (posts.isSubmitted) {
         onModalClose();
+        getPosts();
       }
     });
   };
